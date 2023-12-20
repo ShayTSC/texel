@@ -5,8 +5,8 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
-  const [result, setResult] = useState("");
-  const [parsing, setParsing] = useState(false);
+  const [result, setResult] = useState<string>("");
+  const [parsing, setParsing] = useState<boolean>(false);
 
   async function copy(text: string) {
     try {
