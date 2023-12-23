@@ -29,7 +29,7 @@ export default function Home() {
   function restoreUnicodeEmojis(inputString: string) {
     // Regular expression to match Unicode emoji codes
     const emojiRegex = /\\u([\dA-Fa-f]{4})/g;
-  
+
     return inputString.replace(emojiRegex, (match, hexCode) => {
       const emojiChar = String.fromCodePoint(parseInt(hexCode, 16));
       return emojiChar;
@@ -70,7 +70,7 @@ export default function Home() {
           </label>
           <textarea
             className={
-              "w-full rounded-sm outline outline-0 focus:outline-2 focus:outline-offset-2 outline-blue-300 transition-all px-2 max-w-[70vw]"
+              "w-full rounded-sm outline outline-0 focus:outline-2 focus:outline-offset-2 outline-blue-300 transition-all px-2 max-w-[70vw] text-white dark:text-black"
             }
             onChange={(e) => {
               setResult(btoa(e.target.value));
@@ -87,6 +87,32 @@ export default function Home() {
           >
             {restoreUnicodeEmojis(result) || "Empty input"}
           </p>
+          {result && (
+            <button
+              type="button"
+              className={`mt-4 inline-flex items-center gap-x-1.5 rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-regular text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                parsing && "disabled opacity-50 cursor-not-allowed"
+              }`}
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(
+                    `${process.env.NEXT_PUBLIC_CONVERSION_API_ENDPOINT}/sub?url=${result}`
+                  );
+                  toast.success("Copied to clipboard");
+                } catch (error) {
+                  toast.error(`Failed to copy: \n${JSON.stringify(error)}`, {
+                    duration: 5000,
+                  });
+                }
+              }}
+            >
+              <DocumentDuplicateIcon
+                className="-ml-0.5 h-5 w-5"
+                aria-hidden="true"
+              />
+              Copy Subscription URL
+            </button>
+          )}
         </div>
         <button
           type="button"
@@ -101,7 +127,7 @@ export default function Home() {
             className="-ml-0.5 h-5 w-5"
             aria-hidden="true"
           />
-          Convert subscription URL
+          Convert and Copy Actual Config Content
         </button>
       </div>
       <Toaster />
