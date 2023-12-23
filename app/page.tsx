@@ -31,8 +31,7 @@ export default function Home() {
     const emojiRegex = /\\u([\dA-Fa-f]{4})/g;
 
     return inputString.replace(emojiRegex, (match, hexCode) => {
-      const emojiChar = String.fromCodePoint(parseInt(hexCode, 16));
-      return emojiChar;
+      return String.fromCodePoint(parseInt(hexCode, 16));
     });
   }
 
