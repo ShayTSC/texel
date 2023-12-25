@@ -69,7 +69,7 @@ export default function Home() {
           </label>
           <textarea
             className={
-              "w-full rounded-sm outline outline-0 focus:outline-2 focus:outline-offset-2 outline-blue-300 transition-all px-2 max-w-[70vw] dark:bg-slate-900"
+              "w-full rounded-sm outline outline-0 focus:outline-2 focus:outline-offset-2 outline-blue-300 dark:outline-blue-900 transition-all px-2 max-w-[70vw] dark:bg-slate-900"
             }
             onChange={(e) => {
               setResult(btoa(e.target.value));
