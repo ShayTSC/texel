@@ -39,7 +39,7 @@ export default function Home() {
     setParsing(true);
     fetch(
       `${process.env.NEXT_PUBLIC_CONVERSION_API_ENDPOINT}/sub?url=${result}`,
-      { method: "POST" }
+      { method: "GET" }
     )
       .then(
         (res) => {
