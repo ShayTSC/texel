@@ -80,7 +80,7 @@ export default function Home() {
           </div>
           <p
             onClick={() => {
-              copy(result).then(r => console.debug('copy result', r));
+              copy(result).then((r) => console.debug("copy result", r));
             }}
             className="cursor-pointer text-xs w-full max-w-[70vw] break-all"
           >
@@ -116,12 +116,12 @@ export default function Home() {
         {result && (
           <button
             type="button"
-            className={ `mt-4 inline-flex items-center gap-x-1.5 rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-regular text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+            className={`mt-4 inline-flex items-center gap-x-1.5 rounded-md bg-blue-600 px-2.5 py-1.5 text-sm font-regular text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
               parsing && "disabled opacity-50 cursor-not-allowed"
-            }` }
-            onClick={ () => {
+            }`}
+            onClick={() => {
               if (!parsing) convertAndCopy(result);
-            } }
+            }}
           >
             <DocumentDuplicateIcon
               className="-ml-0.5 h-5 w-5"
@@ -129,7 +129,7 @@ export default function Home() {
             />
             Convert and Copy Actual Config Content
           </button>
-        ) }
+        )}
       </div>
       <Toaster />
     </main>
